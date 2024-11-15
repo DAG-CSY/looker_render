@@ -7,6 +7,5 @@
   "js": [
     "https://dag-csy.github.io/looker_render/renderBatteryTable.js"
   ],
-  "html": "index.html",
   "css": []
 }
