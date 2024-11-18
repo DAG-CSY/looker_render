@@ -1,10 +1,15 @@
 {
-  "name": "Base64 Image Visualization",
-  "version": "1.0.0",
-  "author": "csy",
-  "description": "A custom visualization to display Base64 encoded images.",
-  "type": "community_visualization",
-  "files": {
+  "visualization": {
+    "id": "image_table",
+    "label": "Image Table",
+    "icon": "table_chart", 
+    "options": {},
+    "config": {
+      "showLabels": true,
+      "labelPosition": "top"
+    }
+  },
+  "resources": {
     "js": [
       "renderBatteryTable.js"
     ],
@@ -15,22 +20,9 @@
       "index.html"
     ]
   },
-  "parameters": {
-    "imageField": {
-      "type": "FIELD",
-      "label": "Image Field",
-      "description": "Select the field containing Base64 encoded images",
-      "required": true
-    },
-    "titleField": {
-      "type": "FIELD",
-      "label": "Title Field",
-      "description": "Select the field containing the image titles",
-      "required": true
-    }
-  },
-  "dependencies": {
-    "google-visualization": "1.0"
-  },
-  "manifest_version": "2"
+  "meta": {
+    "author": "csy",
+    "description": "A simple table displaying filenames and Base64 images",
+    "version": "1.0.0"
+  }
 }
