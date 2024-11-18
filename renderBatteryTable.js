@@ -8,7 +8,7 @@ looker.plugins.visualizations.add({
     table.className = "image-table";
     element.appendChild(table);
     
-    // Add table header
+    // Add table header test1
     var header = table.createTHead();
     var headerRow = header.insertRow(0);
     headerRow.insertCell(0).innerHTML = "<strong>Filename</strong>";
