@@ -1,11 +1,36 @@
 {
-  "name": "Battery Data Table with Images",
-  "description": "Displays battery data and base64 images in a table",
+  "name": "Base64 Image Visualization",
+  "version": "1.0.0",
   "author": "csy",
-  "version": "1.0",
-  "license": "MIT",
-  "js": [
-    "https://dag-csy.github.io/looker_render/renderBatteryTable.js"
-  ],
-  "css": []
+  "description": "A custom visualization to display Base64 encoded images.",
+  "type": "community_visualization",
+  "files": {
+    "js": [
+      "renderBatteryTable.js"
+    ],
+    "css": [
+      "style.css"
+    ],
+    "html": [
+      "index.html"
+    ]
+  },
+  "parameters": {
+    "imageField": {
+      "type": "FIELD",
+      "label": "Image Field",
+      "description": "Select the field containing Base64 encoded images",
+      "required": true
+    },
+    "titleField": {
+      "type": "FIELD",
+      "label": "Title Field",
+      "description": "Select the field containing the image titles",
+      "required": true
+    }
+  },
+  "dependencies": {
+    "google-visualization": "1.0"
+  },
+  "manifest_version": "2"
 }
