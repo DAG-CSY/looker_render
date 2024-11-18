@@ -1,34 +1,27 @@
-function renderBatteryTable(data) {
-  const container = document.getElementById('table-container');
+// Draw the visualization with the data passed to it
+function drawVisualization(data) {
+    const container = document.getElementById('visualization-container');
 
-  if (container) {
-    // Create a table element
-    const table = document.createElement('table');
-    table.setAttribute('border', '1');
-    
-    // Add table headers
-    const headerRow = document.createElement('tr');
-    headerRow.innerHTML = '<th>Battery ID</th><th>Date</th><th>Filename</th><th>Image</th>';
-    table.appendChild(headerRow);
-
-    // Populate table rows with data
+    // Loop through the data and render images
     data.forEach(row => {
-      const tr = document.createElement('tr');
-      tr.innerHTML = `
-        <td>${row.battery_id}</td>
-        <td>${row.date}</td>
-        <td>${row.filename}</td>
-        <td><img src="data:image/png;base64,${row.scatter_plot_img}" width="100"></td>
-      `;
-      table.appendChild(tr);
-    });
+        const imageBase64 = row[1];  // Assuming Base64 data is in the second column
+        
+        // Create an image element
+        const imgElement = document.createElement('img');
+        imgElement.src = imageBase64;  // Set the source to the Base64 string
+        imgElement.alt = 'Base64 Image';
+        imgElement.classList.add('visualization-image');
 
-    // Clear the container and append the table
-    container.innerHTML = '';
-    container.appendChild(table);
-  }
+        // Append the image to the container
+        container.appendChild(imgElement);
+    });
 }
 
-// Example usage:
-// Assuming the data passed contains fields: battery_id, date, filename, scatter_plot_img
-renderBatteryTable(sampleData);  // sampleData should be passed from Looker Studio
+// Dummy data for testing (replace with actual Looker Studio data)
+const dummyData = [
+    ['image1.png', 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAUA...'],  // Base64 string
+    ['image2.png', 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAUA...'],
+];
+
+// Call drawVisualization with the dummy data
+drawVisualization(dummyData);
