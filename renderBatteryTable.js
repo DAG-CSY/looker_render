@@ -1,27 +1,28 @@
-// Draw the visualization with the data passed to it
 function drawVisualization(data) {
-    const container = document.getElementById('visualization-container');
-
-    // Loop through the data and render images
-    data.forEach(row => {
-        const imageBase64 = row[1];  // Assuming Base64 data is in the second column
+    const tableBody = document.getElementById('table-body');
+    
+    // Loop through each row of data passed from Looker Studio
+    for (let row = 0; row < data.getNumberOfRows(); row++) {
+        const filename = data.getValue(row, 0);  // Get the filename from the first column
+        const base64Image = data.getValue(row, 1);  // Get the Base64 image from the second column
         
-        // Create an image element
-        const imgElement = document.createElement('img');
-        imgElement.src = imageBase64;  // Set the source to the Base64 string
-        imgElement.alt = 'Base64 Image';
-        imgElement.classList.add('visualization-image');
-
-        // Append the image to the container
-        container.appendChild(imgElement);
-    });
+        // Create a new row in the table
+        const tableRow = document.createElement('tr');
+        
+        // Create a cell for the filename
+        const filenameCell = document.createElement('td');
+        filenameCell.textContent = filename;
+        tableRow.appendChild(filenameCell);
+        
+        // Create a cell for the Base64 image
+        const imageCell = document.createElement('td');
+        const imageElement = document.createElement('img');
+        imageElement.src = base64Image;  // Set the source of the image to the Base64 string
+        imageElement.alt = filename;    // Set the alt text to the filename
+        imageCell.appendChild(imageElement);
+        tableRow.appendChild(imageCell);
+        
+        // Add the row to the table body
+        tableBody.appendChild(tableRow);
+    }
 }
-
-// Dummy data for testing (replace with actual Looker Studio data)
-const dummyData = [
-    ['image1.png', 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAUA...'],  // Base64 string
-    ['image2.png', 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAUA...'],
-];
-
-// Call drawVisualization with the dummy data
-drawVisualization(dummyData);
